@@ -2,6 +2,7 @@ import pytest # type: ignore
 from datetime import datetime
 from src.task_manager.task import Task, Priority, Status
 
+@pytest.mark.unit
 class TestTaskCreation:
     """Tests de création de tâches"""
     def test_create_task_minimal(self):
@@ -30,6 +31,7 @@ class TestTaskCreation:
         with pytest.raises(ValueError):
             Task("Titre", priority="INVALID")
 
+@pytest.mark.unit
 class TestTaskOperations:
     """Tests des opérations sur les tâches"""
     def setup_method(self):
@@ -52,6 +54,7 @@ class TestTaskOperations:
         self.task.assign_to_project("proj-123")
         assert self.task.project_id == "proj-123"
 
+@pytest.mark.unit
 class TestTaskSerialization:
     """Tests de sérialisation JSON"""
     def setup_method(self):
@@ -77,6 +80,7 @@ class TestTaskSerialization:
         assert t2.project_id == self.task.project_id
         assert t2.completed_at == self.task.completed_at
 
+@pytest.mark.unit
 class TestTaskEdgeCases:
     def test_to_dict_with_minimal_task(self):
         task = Task("Minimal")

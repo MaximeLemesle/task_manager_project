@@ -4,7 +4,7 @@ import json
 from src.task_manager.manager import TaskManager
 from src.task_manager.task import Task, Priority, Status
 from datetime import datetime
-
+@pytest.mark.unit
 class TestTaskManagerBasics:
     """Tests basiques du gestionnaire"""
     def setup_method(self):
@@ -25,6 +25,7 @@ class TestTaskManagerBasics:
     def test_get_task_nonexistent_returns_none(self):
         assert self.manager.get_task("bidon") is None
 
+@pytest.mark.unit
 class TestTaskManagerFiltering:
     """Tests de filtrage des tâches"""
     def setup_method(self):
@@ -45,6 +46,7 @@ class TestTaskManagerFiltering:
         assert all(t.priority == Priority.HIGH for t in highs)
         assert len(highs) == 2
 
+@pytest.mark.unit
 class TestTaskManagerPersistence:
     """Tests de sauvegarde/chargement avec mocks"""
     def setup_method(self):

@@ -4,6 +4,7 @@ from src.task_manager.services import EmailService, ReportService
 from src.task_manager.task import Task, Priority, Status
 from datetime import datetime, timedelta
 
+@pytest.mark.unit
 class TestEmailService:
     """Tests du service email avec mocks"""
     def setup_method(self):
@@ -27,6 +28,7 @@ class TestEmailService:
         with pytest.raises(ValueError):
             self.email_service.send_completion_notification("invalid", "Tâche")
 
+@pytest.mark.unit
 class TestReportService:
     """Tests du service de rapports"""
     def setup_method(self):

@@ -61,3 +61,16 @@ src/task_manager/manager.py 91%
 src/task_manager/project.py 100%
 src/task_manager/services.py 98%
 src/task_manager/task.py 100%
+
+## Phase 5: Démonstration et validation
+
+### Étape 13: Tests d'acceptation
+
+- [x] **Fonctionnalités** : Toutes les fonctions requises sont implémentées (CRUD, organisation, stats, persistance, notifications simulées)
+- [x] **Tests** : Couverture ≥ 95% avec tests unitaires et d'intégration
+- [x] **Mocks** : Dépendances externes correctement mockées dans les tests
+- [x] **Organisation** : Structure professionnelle du projet (src/, tests/, services, gestionnaire, entités)
+- [x] **Automatisation** : Tests et couverture automatisés via Makefile et GitHub Actions
+- [x] **CI/CD** : Workflow GitHub Actions fonctionnel (multi-version Python, rapport de couverture)
+- [x] **Documentation** : README complet avec analyse, checklist, instructions
+- [x] **Démonstration** : Script demo.py montrant les fonctionnalités principales

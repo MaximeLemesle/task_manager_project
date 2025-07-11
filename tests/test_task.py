@@ -99,3 +99,12 @@ class TestTaskEdgeCases:
         assert t.title == "T"
         assert t.priority == Priority.MEDIUM
         assert t.status == Status.TODO
+
+@pytest.mark.integration
+def test_task_integration_flow():
+    t = Task("Intégration", "desc", Priority.HIGH)
+    t.mark_completed()
+    d = t.to_dict()
+    t2 = Task.from_dict(d)
+    assert t2.title == t.title
+    assert t2.status == t.status

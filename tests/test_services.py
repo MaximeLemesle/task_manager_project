@@ -71,3 +71,16 @@ class TestReportService:
             pass
         with pytest.raises(AttributeError):
             self.report_service.generate_daily_report([Dummy()])
+
+@pytest.mark.integration
+def test_services_integration_flow():
+    now = datetime.now()
+    tasks = [
+        Task("A", priority=Priority.LOW),
+        Task("B", priority=Priority.HIGH)
+    ]
+    for t in tasks:
+        t.created_at = now
+    report_service = ReportService()
+    report = report_service.generate_daily_report(tasks, date=now)
+    assert report['total_tasks'] == 2

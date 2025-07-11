@@ -4,6 +4,7 @@ import json
 from src.task_manager.manager import TaskManager
 from src.task_manager.task import Task, Priority, Status
 from datetime import datetime
+
 @pytest.mark.unit
 class TestTaskManagerBasics:
     """Tests basiques du gestionnaire"""
@@ -148,3 +149,12 @@ class TestTaskManagerPersistence:
         assert stats['tasks_by_priority']['LOW'] == 1
         assert stats['tasks_by_priority']['HIGH'] == 2
         assert stats['tasks_by_status']['DONE'] == 1
+
+@pytest.mark.integration
+def test_manager_integration_flow():
+    manager = TaskManager("test_integration.json")
+    id1 = manager.add_task("Tâche intégration", priority=Priority.HIGH)
+    manager.save_to_file()
+    manager.tasks = []
+    manager.load_from_file()
+    assert any(t.id == id1 for t in manager.tasks)

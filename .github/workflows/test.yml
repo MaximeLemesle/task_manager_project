@@ -1,0 +1,24 @@
+name: Tests et Qualité
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, "3.10", "3.11"]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+      - name: Lancer les tests unitaires
+        run: pytest -m unit
+      - name: Lancer les tests d'intégration
+        run: pytest -m integration
+      - name: Couverture de code
+        run: pytest --cov=src/task_manager --cov-report=term-missing
+      - name: Générer le rapport HTML de couverture
+        run: pytest --cov=src/task_manager --cov-report=html
